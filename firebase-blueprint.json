@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and avatar settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "avatar": {
+          "type": "object",
+          "properties": {
+            "headColor": { "type": "string" },
+            "torsoColor": { "type": "string" },
+            "legsColor": { "type": "string" },
+            "hat": { "type": "string" }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName"]
+    },
+    "Game": {
+      "title": "Game",
+      "description": "Game definition and launcher data",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "creator": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "launcherData": { "type": "string", "description": "JSON string of block instructions" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "launcherData"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/games/{gameId}": {
+      "schema": "Game",
+      "description": "Available games"
+    }
+  }
+}
